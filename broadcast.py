@@ -123,7 +123,7 @@ async def broadcast_handler(bot, message):
     )
 
 # Command to get user count
-@bot.on_message(filters.command("stats") & filters.user([7029363479]))  # Replace with your user ID
+@bot.on_message(filters.command("stats") & filters.user([5082207960,7612404009]))  # Replace with your user ID
 async def stats_handler(bot, message):
     """Handler for getting bot statistics"""
     users = get_all_users()
