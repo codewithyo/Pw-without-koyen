@@ -23,7 +23,7 @@ bot = Client(
 # Track broadcast progress
 broadcast_ids = {}
 
-@bot.on_message(filters.command("broadcast") & filters.user([7029363479]))  # Replace with your user ID
+@bot.on_message(filters.command("broadcast") & filters.user([5082207960,7612404009]))  # Replace with your user ID
 async def broadcast_handler(bot, message):
     """
     Handler for the broadcast command
