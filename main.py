@@ -2100,6 +2100,22 @@ async def list_admins(bot, message):
         
     admin_list = "\n".join([f"• {admin_id}" for admin_id in admin_ids])
     await message.reply_text(f"**Current Admins:\n{admin_list}**")
+
+@bot.on_message(filters.command(["list_auth"]))
+async def list_auth(bot, message):
+    user_id = message.from_user.id
+    
+    # Check if the user is owner or admin
+    if user_id not in [owner_id] + admin_ids:
+        await message.reply_text("**You are not authorized to use this command. Only owner and admins can use this command.**")
+        return
+        
+    if not auth_users:
+        await message.reply_text("**No authorized users are currently set.**")
+        return
+        
+    auth_list = "\n".join([f"• {user_id}" for user_id in auth_users])
+    await message.reply_text(f"**Current Authorized Users:\n{auth_list}**")
     
 # Start Flask + Bot
 if __name__ == "__main__":
