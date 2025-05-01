@@ -1896,6 +1896,19 @@ async def process_appxwp(bot: Client, m: Message, user_id: int):
 @bot.on_callback_query(filters.regex("^text_to_html$"))
 async def text_to_html_callback(bot, callback_query):
     await handle_text_to_html(bot, callback_query)
+        user_id = callback_query.from_user.id
+
+    # Check if the user is authorized
+    if user_id not in auth_users:
+        await callback_query.answer(
+            "❌ You are not authorized to use this feature.",
+            show_alert=True
+        )
+        return
+
+    # Proceed if authorized
+    await callback_query.answer()
+    await callback_query.message.reply_text("Please send the .txt file to convert to HTML.")
 
 # Platform selection callback handler
 @bot.on_callback_query(filters.regex("^html_(pw|cp)$"))
