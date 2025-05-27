@@ -1066,7 +1066,7 @@ async def process_cpwp(bot: Client, m: Message, user_id: int):
                 if hash_match:
                     token = hash_match.group(1)
                     
-                    async with session.get(f"https://api.classplusapp.com/v2/course/preview/similar/{token}?limit=20", headers=headers) as response:
+                    async with session.get(f"https://api.classplusapp.com/v2/course/preview/similar/{token}?limit=40", headers=headers) as response:
                         if response.status == 200:
                             res_json = await response.json()
                             courses = res_json.get('data', {}).get('coursesData', [])
