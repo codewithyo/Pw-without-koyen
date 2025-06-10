@@ -76,7 +76,7 @@ BACKUP_CHANNEL = 100265748329 # Add your backup channel ID here
 # Bot credentials from environment variables (Render compatible)
 API_ID = int(os.environ.get("API_ID", 23634056))
 API_HASH = os.environ.get("API_HASH", "f2debf49c2f57bad88086ecd17cb5df3")
-BOT_TOKEN = os.environ.get("BOT_TOKEN", "7952974082:AAHRJPd0J6rdR_dTTMNU9g8VAzPXWmkDoRY")
+BOT_TOKEN = os.environ.get("BOT_TOKEN", "7792194200:AAGxH58VkLxKU3kEomdlOds3nZv08Y-xIiU")
 
 # Initialize Bot Globally (IMPORTANT FIX)
 bot = Client("botxm", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
@@ -194,7 +194,9 @@ async def check_join(bot, callback_query):
             ],
             [InlineKeyboardButton("🔮 Aᴘᴘx 🔮", callback_data="appxwp")],
             [InlineKeyboardButton("📝 Tᴇxᴛ Tᴏ Hᴛᴍʟ(cp+pw) 📝", callback_data="text_to_html")],
-            [InlineKeyboardButton("💫 ᴄʀᴇᴀᴛᴏʀ 💫", url="https://t.me/Dreamm_ca")]
+            [InlineKeyboardButton("ᴄᴏᴍɪɴɪɴɢ... 🚀", callback_data="soon")],
+            [InlineKeyboardButton("💫 ᴄʀᴇᴀᴛᴏʀ 💫", url="https://t.me/Dreamm_ca")],
+            [InlineKeyboardButton("🔔 ᴜᴘᴅᴀᴛᴇ ᴄʜᴀɴɴᴇʟ 🔔", url="https://t.me/HrXExtractor")]
         ]
         reply_markup = InlineKeyboardMarkup(keyboard)
 
@@ -1895,7 +1897,14 @@ async def process_appxwp(bot: Client, m: Message, user_id: int):
 # Text to HTML callback handler
 @bot.on_callback_query(filters.regex("^text_to_html$"))
 async def text_to_html_callback(bot, callback_query):
+    user_id = callback_query.from_user.id
     await handle_text_to_html(bot, callback_query)
+
+if user_id not in auth_users:
+        await bot.send_message(callback_query.message.chat.id, f"**You Are Not Subscribed To This Bot\nContact - @DREAMM_CA**")
+        return
+
+  THREADPOOL.submit(asyncio.run, process_text_to_html(bot, callback_query.message, user_id))
         
 # Platform selection callback handler
 @bot.on_callback_query(filters.regex("^html_(pw|cp)$"))
