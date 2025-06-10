@@ -1903,9 +1903,7 @@ async def text_to_html_callback(bot, callback_query):
 if user_id not in auth_users:
         await bot.send_message(callback_query.message.chat.id, f"**You Are Not Subscribed To This Bot\nContact - @DREAMM_CA**")
         return
-
-  THREADPOOL.submit(asyncio.run, process_text_to_html(bot, callback_query.message, user_id))
-        
+    
 # Platform selection callback handler
 @bot.on_callback_query(filters.regex("^html_(pw|cp)$"))
 async def platform_selection_callback(bot, callback_query):
