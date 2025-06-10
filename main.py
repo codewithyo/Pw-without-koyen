@@ -196,8 +196,8 @@ async def check_join(bot, callback_query):
             [InlineKeyboardButton("📝 Tᴇxᴛ Tᴏ Hᴛᴍʟ(cp+pw) 📝", callback_data="text_to_html")],
             [InlineKeyboardButton("ᴄᴏᴍɪɴɪɴɢ... 🚀", callback_data="soon")],
             [InlineKeyboardButton("💫 ᴄʀᴇᴀᴛᴏʀ 💫", url="https://t.me/Dreamm_ca")], 
-             InlineKeyboardButton("🔔 ᴜᴘᴅᴀᴛᴇ ᴄʜᴀɴɴᴇʟ 🔔", url="https://t.me/HrXExtractor")],
-        ]
+             InlineKeyboardButton("🔔 ᴜᴘᴅᴀᴛᴇ ᴄʜᴀɴɴᴇʟ 🔔", url="https://t.me/HrXExtractor")]
+    
         reply_markup = InlineKeyboardMarkup(keyboard)
 
         welcome_text = """
