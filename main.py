@@ -1,15 +1,20 @@
 def get_cpwp_course_content():
-    import requests
-    from bs4 import BeautifulSoup
-
-    url = 'your_url_here'  # replace with the actual URL
-    response = requests.get(url)
-    soup = BeautifulSoup(response.content, 'html.parser')
-
-    # Extracting PDF links explicitly
+    # Original implementation to extract course content
+    content = []
     pdf_links = []
-    for link in soup.find_all('a', href=True):
-        if link['href'].endswith('.pdf'):
-            pdf_links.append(link['href'])
-
-    return pdf_links
+    response = requests.get(COURSE_URL)
+    soup = BeautifulSoup(response.content, 'html.parser')
+    
+    # Assuming the content is structured in a specific way
+    for item in soup.find_all('div', class_='course-item'):
+        title = item.find('h3').text
+        description = item.find('p').text
+        content.append({'title': title, 'description': description})
+        
+        # Extracting PDF links
+        for link in item.find_all('a'):
+            href = link.get('href')
+            if href.endswith('.pdf'):
+                pdf_links.append(href)
+    
+    return content, pdf_links
